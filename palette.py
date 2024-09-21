@@ -157,11 +157,13 @@ class Palette:
 
 def paint_maze(maze: Maze, palette: Palette):
     # Get the maximum value so we can use it to interpolate.
-    # The -1 compensates for the +1 of the measuring algorithm.
+    # -1 to compensate for the +1 introduced by `measure_distance`.
     max_value = max(cell.value() for cell in maze.cells()) - 1
 
     for cell in tqdm(maze.cells(), desc="paint pixels", total=maze.shape().x * maze.shape().y):
-        # The -1 compensates for the +1 of the measuring algorithm.
-        value = cell.value() - 1
-        color = palette.paint(value / max_value)
-        cell.set_value(UInt28(color))
+        value = cell.value()
+        if value != 0:
+            # -1 to compensate for the +1 introduced by `measure_distance`.
+            value = value - 1
+            color = palette.paint(value / max_value)
+            cell.set_value(UInt28(color))

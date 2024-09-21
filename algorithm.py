@@ -77,7 +77,7 @@ class RecursiveBacktracker(MazeAlgorithm):
                 progress.update(1)
         progress.close()
 
-def measure_distances(maze: Maze, start_coordinates: Point):
+def measure_distance(maze: Maze, start_coordinates: Point):
     cell = maze[start_coordinates]
 
     if not cell:
