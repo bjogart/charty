@@ -1,5 +1,5 @@
 import random
-from algorithm import ALGORITHMS, MazeAlgorithm, measure_distances
+from algorithm import ALGORITHMS, MazeAlgorithm, measure_distance
 from img import save_color_data
 from maze import Maze, Point
 from palette import Hsl, Palette, paint_maze
@@ -16,7 +16,7 @@ def chart(width: int, height: int, maze_algorithm_constructor: MazeAlgorithm, pr
     #    The algorithm is implemented through the `MazeAlgorithm` abstract base class.
     maze_algorithm_constructor().build(maze, start_coordinates)
     # 3. Measure the distance from the starting coordinates to every cell.
-    measure_distances(maze, start_coordinates)
+    measure_distance(maze, start_coordinates)
     # 4. Color the maze by interpolating between to colors based on the relative distance to the starting coordinates.
     palette = Palette(primary_color, secondary_color, transmission_constructor())
     paint_maze(maze, palette)
